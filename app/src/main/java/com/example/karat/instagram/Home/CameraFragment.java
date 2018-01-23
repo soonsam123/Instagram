@@ -9,13 +9,17 @@ import android.view.ViewGroup;
 
 import com.example.karat.instagram.R;
 
-/*This method inflates the Camera Layout*/
+/*===============Fragment for Camera when you type Camera Icon===============*/
 public class CameraFragment extends Fragment {
+
+    private static final String TAG = Fragment.class.getName();
 
     public CameraFragment() {
         super();
     }
 
+
+    // Inflates the layout for Camera.
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {

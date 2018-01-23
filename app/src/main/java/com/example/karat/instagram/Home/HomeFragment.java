@@ -11,16 +11,17 @@ import android.view.ViewGroup;
 
 import com.example.karat.instagram.R;
 
-/**
- * Created by karat on 23/01/2018.
- */
-
+/*===============Fragment for Home when you type Instagram Logo===============*/
 public class HomeFragment extends Fragment {
+
+    private static final String TAG = Fragment.class.getName();
 
     public HomeFragment() {
         super();
     }
 
+
+    // Inflates the layout for Home.
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

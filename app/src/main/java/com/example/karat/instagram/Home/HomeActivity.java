@@ -27,11 +27,13 @@ public class HomeActivity extends AppCompatActivity {
 
         Log.d(TAG, "onCreate: Starting onCreate");
         setUpBottomNavViewEx();
+        setUpViewPager();
 
     }
 
     private void setUpViewPager(){
 
+        Log.d(TAG, "setUpViewPager: Setting up the View Pager for Home Activity");
         ViewPager viewPagerContainer = findViewById(R.id.viewPagerContainer);
 
         SectionsPageAdapter sectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
@@ -42,11 +44,17 @@ public class HomeActivity extends AppCompatActivity {
         viewPagerContainer.setAdapter(sectionsPageAdapter);
 
         TabLayout topTabLayout = findViewById(R.id.topTabLayout);
-        topTabLayout.getTabAt(0).setIcon(R.drawable.ic_camera);
-        topTabLayout.getTabAt(1).setIcon(R.drawable.ic_instagram_logo);
-        topTabLayout.getTabAt(2).setIcon(R.drawable.ic_message);
-
         topTabLayout.setupWithViewPager(viewPagerContainer);
+
+        if (topTabLayout.getTabAt(0) != null) {
+            topTabLayout.getTabAt(0).setIcon(R.drawable.ic_camera);
+        }
+        if (topTabLayout.getTabAt(1) != null) {
+            topTabLayout.getTabAt(1).setIcon(R.drawable.ic_instagram_logo);
+        }
+        if (topTabLayout.getTabAt(2) != null) {
+            topTabLayout.getTabAt(2).setIcon(R.drawable.ic_message);
+        }
 
     }
 
