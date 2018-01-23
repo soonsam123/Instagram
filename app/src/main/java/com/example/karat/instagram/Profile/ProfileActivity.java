@@ -1,4 +1,4 @@
-package com.example.karat.instagram;
+package com.example.karat.instagram.Profile;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -8,25 +8,27 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.karat.instagram.BottomNavigationHelper;
+import com.example.karat.instagram.R;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
 /**
  * Created by karat on 23/01/2018.
  */
 
-public class ShareActivity extends AppCompatActivity {
+public class ProfileActivity extends AppCompatActivity {
 
     private static final String TAG = AppCompatActivity.class.getName();
 
-    private Context mContext = ShareActivity.this;
+    private Context mContext = ProfileActivity.this;
 
-    int ACTIVITY_NUM = 2;
+    int ACTIVITY_NUM = 4;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        Log.d(TAG, "onCreate: Starting Share Activity");
+        Log.d(TAG, "onCreate: Starting Likes Activity");
 
         setUpBottomNavViewEx();
 
@@ -34,7 +36,7 @@ public class ShareActivity extends AppCompatActivity {
 
     private void setUpBottomNavViewEx(){
 
-        Log.d(TAG, "setUpBottomNavViewEx: Setting up the BottomNavViewEx for ShareActivity");
+        Log.d(TAG, "setUpBottomNavViewEx: Setting up the BottomNavViewEx for LikesActivity");
         BottomNavigationViewEx bottomNavigationViewEx = findViewById(R.id.bottomNavView);
         BottomNavigationHelper.setUpBottomNavigationView(bottomNavigationViewEx);
         BottomNavigationHelper.enablePagination(mContext, bottomNavigationViewEx);

@@ -6,6 +6,11 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.view.MenuItem;
 
+import com.example.karat.instagram.Home.HomeActivity;
+import com.example.karat.instagram.Likes.LikesActivity;
+import com.example.karat.instagram.Profile.ProfileActivity;
+import com.example.karat.instagram.Search.SearchActivity;
+import com.example.karat.instagram.Share.ShareActivity;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
 /**

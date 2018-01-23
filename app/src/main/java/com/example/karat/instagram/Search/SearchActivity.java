@@ -1,4 +1,4 @@
-package com.example.karat.instagram;
+package com.example.karat.instagram.Search;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -8,25 +8,27 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.karat.instagram.BottomNavigationHelper;
+import com.example.karat.instagram.R;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
 /**
  * Created by karat on 23/01/2018.
  */
 
-public class LikesActivity extends AppCompatActivity {
+public class SearchActivity extends AppCompatActivity {
 
     private static final String TAG = AppCompatActivity.class.getName();
 
-    private Context mContext = LikesActivity.this;
+    private Context mContext = SearchActivity.this;
 
-    int ACTIVITY_NUM = 3;
+    int ACTIVITY_NUM = 1;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        Log.d(TAG, "onCreate: Starting Likes Activity");
+        Log.d(TAG, "onCreate: Starting Search Activity");
 
         setUpBottomNavViewEx();
 
@@ -34,7 +36,8 @@ public class LikesActivity extends AppCompatActivity {
 
     private void setUpBottomNavViewEx(){
 
-        Log.d(TAG, "setUpBottomNavViewEx: Setting up the BottomNavViewEx for LikesActivity");
+        Log.d(TAG, "setUpBottomNavViewEx: Setting up the BottomNavViewEx for SearchActivity");
+
         BottomNavigationViewEx bottomNavigationViewEx = findViewById(R.id.bottomNavView);
         BottomNavigationHelper.setUpBottomNavigationView(bottomNavigationViewEx);
         BottomNavigationHelper.enablePagination(mContext, bottomNavigationViewEx);
