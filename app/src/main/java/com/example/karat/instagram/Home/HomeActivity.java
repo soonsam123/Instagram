@@ -1,6 +1,8 @@
 package com.example.karat.instagram.Home;
 
 import android.content.Context;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -28,6 +30,25 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
+    private void setUpViewPager(){
+
+        ViewPager viewPagerContainer = findViewById(R.id.viewPagerContainer);
+
+        SectionsPageAdapter sectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
+        sectionsPageAdapter.addFragment(new CameraFragment());
+        sectionsPageAdapter.addFragment(new HomeFragment());
+        sectionsPageAdapter.addFragment(new MessageFragment());
+
+        viewPagerContainer.setAdapter(sectionsPageAdapter);
+
+        TabLayout topTabLayout = findViewById(R.id.topTabLayout);
+        topTabLayout.getTabAt(0).setIcon(R.drawable.ic_camera);
+        topTabLayout.getTabAt(1).setIcon(R.drawable.ic_instagram_logo);
+        topTabLayout.getTabAt(2).setIcon(R.drawable.ic_message);
+
+        topTabLayout.setupWithViewPager(viewPagerContainer);
+
+    }
 
     /*==============Bottom Navigation Properties==============*/
     private void setUpBottomNavViewEx(){
