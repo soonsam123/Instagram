@@ -53,6 +53,9 @@ public class ProfileActivity extends AppCompatActivity {
                     case R.id.editProfile_id:
                         Toast.makeText(mContext, "Edit Profile", Toast.LENGTH_SHORT).show();
                         break;
+                    case R.id.addFriend_id:
+                        Toast.makeText(mContext, "Add Friend", Toast.LENGTH_SHORT).show();
+                        break;
 
                 }
 

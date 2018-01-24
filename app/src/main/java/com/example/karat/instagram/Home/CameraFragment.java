@@ -14,10 +14,6 @@ public class CameraFragment extends Fragment {
 
     private static final String TAG = Fragment.class.getName();
 
-    public CameraFragment() {
-        super();
-    }
-
 
     // Inflates the layout for Camera.
     @Nullable

@@ -13,7 +13,10 @@ public class SectionsPageAdapter extends FragmentPagerAdapter {
 
     private static final String TAG = FragmentPagerAdapter.class.getName();
 
-    private static List<Fragment> fragmentListHome = new ArrayList<>();
+    // declaring fragmentListHome as static mess up the things.
+    // Static variable can be acessed from others activity without instantiating.
+    // SectionsPageAdapter.staticVariable = ...
+    private final List<Fragment> fragmentListHome = new ArrayList<>();
 
     public SectionsPageAdapter(FragmentManager fm) {
         super(fm);
@@ -32,6 +35,25 @@ public class SectionsPageAdapter extends FragmentPagerAdapter {
     public void addFragment(Fragment fragment){
         Log.d(TAG, "addFragment: Adding the Fragments to the PagerAdapter");
         fragmentListHome.add(fragment);
+
+    }
+
+
+    public void deleteFragment(int position){
+
+        fragmentListHome.remove(position);
+
+    }
+
+    public void deleteAllFragments(){
+
+        if (fragmentListHome.size() != 0) {
+            for (int i = 0; i < fragmentListHome.size(); i++) {
+
+                fragmentListHome.remove(i);
+
+            }
+        }
 
     }
 

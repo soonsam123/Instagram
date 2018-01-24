@@ -34,28 +34,29 @@ public class HomeActivity extends AppCompatActivity {
     private void setUpViewPager(){
 
         Log.d(TAG, "setUpViewPager: Setting up the View Pager for Home Activity");
+
         ViewPager viewPagerContainer = findViewById(R.id.viewPagerContainer);
 
         SectionsPageAdapter sectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
+        TabLayout topTabLayout = findViewById(R.id.topTabLayout);
+
         sectionsPageAdapter.addFragment(new CameraFragment());
         sectionsPageAdapter.addFragment(new HomeFragment());
         sectionsPageAdapter.addFragment(new MessageFragment());
 
         viewPagerContainer.setAdapter(sectionsPageAdapter);
-
-        TabLayout topTabLayout = findViewById(R.id.topTabLayout);
         topTabLayout.setupWithViewPager(viewPagerContainer);
 
-        if (topTabLayout.getTabAt(0) != null) {
+
+        if (topTabLayout.getTabCount() > 0 && topTabLayout.getTabAt(0) != null) {
             topTabLayout.getTabAt(0).setIcon(R.drawable.ic_camera);
         }
-        if (topTabLayout.getTabAt(1) != null) {
+        if (topTabLayout.getTabCount() > 1 && topTabLayout.getTabAt(1) != null) {
             topTabLayout.getTabAt(1).setIcon(R.drawable.ic_instagram_logo);
         }
-        if (topTabLayout.getTabAt(2) != null) {
+        if (topTabLayout.getTabCount() > 2 && topTabLayout.getTabAt(2) != null) {
             topTabLayout.getTabAt(2).setIcon(R.drawable.ic_message);
         }
-
     }
 
     /*==============Bottom Navigation Properties==============*/

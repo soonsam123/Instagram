@@ -15,10 +15,6 @@ public class MessageFragment extends Fragment{
 
     private static final String TAG = Fragment.class.getName();
 
-    public MessageFragment() {
-        super();
-    }
-
 
     // Inflates the layout for Message.
     @Nullable

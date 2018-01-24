@@ -4,12 +4,12 @@
 
     <item
         android:id="@+id/editProfile_id"
-        android:title="Edit Profile"/>
+        android:title=""/>
 
     <item
         android:id="@+id/addFriend_id"
         android:title=""
-        android:icon="@drawable/ic_account_plus"
+        android:icon="@drawable/ic_account_plus_black_48dp"
         app:showAsAction="always"/>
 
 </menu>

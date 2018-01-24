@@ -16,10 +16,6 @@ public class HomeFragment extends Fragment {
 
     private static final String TAG = Fragment.class.getName();
 
-    public HomeFragment() {
-        super();
-    }
-
 
     // Inflates the layout for Home.
     @Nullable

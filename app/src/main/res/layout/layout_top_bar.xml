@@ -15,13 +15,8 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/topTabLayout"
                 android:background="@drawable/white_grey_border_bottom"
-                app:tabMaxWidth="0dp"
                 app:tabGravity="fill"
-                app:tabMode="fixed">
-
-
-
-            </android.support.design.widget.TabLayout>
+                app:tabMode="fixed" />
 
         </android.support.design.widget.AppBarLayout>
 
