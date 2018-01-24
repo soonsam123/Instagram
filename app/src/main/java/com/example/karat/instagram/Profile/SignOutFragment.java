@@ -9,15 +9,10 @@ import android.view.ViewGroup;
 
 import com.example.karat.instagram.R;
 
-/**
- * Created by karat on 24/01/2018.
- */
 
 public class SignOutFragment extends Fragment {
 
-    public SignOutFragment() {
-        super();
-    }
+    private static final String TAG = Fragment.class.getName();
 
     @Nullable
     @Override

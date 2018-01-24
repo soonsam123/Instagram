@@ -51,7 +51,7 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent intentAccountSetting = new Intent(mContext, AccountSettings.class);
+                Intent intentAccountSetting = new Intent(mContext, AccountSettingsActivity.class);
                 startActivity(intentAccountSetting);
 
             }

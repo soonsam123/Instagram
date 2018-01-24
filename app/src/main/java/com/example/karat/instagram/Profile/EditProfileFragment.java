@@ -9,15 +9,11 @@ import android.view.ViewGroup;
 
 import com.example.karat.instagram.R;
 
-/**
- * Created by karat on 24/01/2018.
- */
 
 public class EditProfileFragment extends Fragment {
 
-    public EditProfileFragment() {
-        super();
-    }
+
+    private static final String TAG = Fragment.class.getName();
 
     @Nullable
     @Override

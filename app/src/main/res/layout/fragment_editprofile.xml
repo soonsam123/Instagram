@@ -3,46 +3,295 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
 
-    <!-- Top toolBar (Edit profile text, back and confirm icons, outside of the scroll) -->
+
+    <!-- Relative Layout Container -->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/relLayout_main_top">
+        android:id="@+id/relLayout_container_editProfile"
+        android:background="@color/colorWhite"
+        android:layout_marginBottom="50dp">
 
-        <include layout="@layout/snippet_topbar_editprofile"/>
-
-    </RelativeLayout>
-    <!-- END OF Top toolBar -->
-
-    <android.support.v4.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/scrollView_fragment_editProfile"
-        android:clipToPadding="false"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-        <!-- Relative Layout Container -->
+        <!-- Top toolBar (Edit profile text, back and confirm icons, outside of the scroll) -->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/relLayout_container"
-            android:background="@color/colorWhite">
+            android:id="@+id/relLayout_main_top">
 
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-
-
-            </RelativeLayout>
-
-
+            <include layout="@layout/snippet_topbar_editprofile"/>
 
         </RelativeLayout>
+        <!-- END OF Top toolBar -->
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/scrollView_fragment_editProfile"
+            android:clipToPadding="false"
+            android:layout_below="@+id/relLayout_main_top"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
 
-    </android.support.v4.widget.NestedScrollView>
+                <!-- RelLayout Container for the NestedScrollView -->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <!--****************************** Picture and Change Photo TextView ******************************-->
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/relLayout_1">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:src="@color/colorGray_400"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginBottom="10dp"
+                            android:id="@+id/imgView_editProfile_profilePicture"
+                            app:civ_border_width="2dp"
+                            app:civ_border_color="@color/colorBlack" />
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/change_photo"
+                            android:textSize="14sp"
+                            android:textColor="@color/colorBlue_800"
+                            android:layout_below="@+id/imgView_editProfile_profilePicture"
+                            android:layout_centerHorizontal="true"/>
+
+                    </RelativeLayout>
+                    <!--****************************** END OF Picture and Change Photo TextView ******************************-->
+
+                    <!--****************************** Username ******************************-->
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/relLayout_2"
+                        android:layout_below="@+id/relLayout_1"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/grey_border_bottom">
+
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_camera"
+                            />
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/editText_username_editProfile"
+                            android:hint="soonsantos"
+                            android:layout_marginStart="40dp"
+                            android:background="@null"
+                            android:inputType="text"/>
+
+
+                    </RelativeLayout>
+                    <!--****************************** END OF Username ******************************-->
+
+
+
+                    <!--****************************** Name ******************************-->
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/relLayout_3"
+                        android:layout_below="@+id/relLayout_2"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/grey_border_bottom">
+
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_camera"
+                            android:contentDescription="@string/profile_picture"
+                            />
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Soon Santos"
+                            android:id="@+id/editText_name_editProfile"
+                            android:layout_marginStart="40dp"
+                            android:background="@null"
+                            android:inputType="text"/>
+
+
+                    </RelativeLayout>
+                    <!--****************************** END OF Name ******************************-->
+
+
+
+                    <!--****************************** Website ******************************-->
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/relLayout_4"
+                        android:layout_below="@+id/relLayout_3"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/grey_border_bottom">
+
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_camera"
+                            android:contentDescription="@string/profile_picture"
+                            />
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="www.leafsoon.com"
+                            android:id="@+id/editText_website_editProfile"
+                            android:layout_marginStart="40dp"
+                            android:background="@null"
+                            android:inputType="textWebEditText"/>
+
+
+                    </RelativeLayout>
+                    <!--****************************** END OF Website ******************************-->
+
+
+
+                    <!--****************************** Location ******************************-->
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/relLayout_5"
+                        android:layout_below="@+id/relLayout_4"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/grey_border_bottom">
+
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_camera"
+                            android:contentDescription="@string/profile_picture"
+                            />
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Anápolis-GO, Brazil"
+                            android:id="@+id/editText_location_editProfile"
+                            android:layout_marginStart="40dp"
+                            android:background="@null"
+                            android:inputType="textPostalAddress"/>
+
+
+                    </RelativeLayout>
+                    <!--****************************** END OF Location ******************************-->
+
+
+                    <!--****************************** PRIVATE INFORMATION ******************************-->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/privateInformation"
+                        android:text="@string/private_information"
+                        android:layout_below="@+id/relLayout_5"
+                        android:textSize="20sp"
+                        android:textColor="@color/colorBlack"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/grey_border_bottom"/>
+                    <!--****************************** END OF PRIVATE INFORMATION ******************************-->
+
+
+
+                    <!--****************************** Email ******************************-->
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/relLayout_6"
+                        android:layout_below="@+id/privateInformation"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/grey_border_bottom">
+
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_camera"
+                            android:contentDescription="@string/profile_picture"
+                            />
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/leafsoon_email"
+                            android:id="@+id/editText_email_editProfile"
+                            android:layout_marginStart="40dp"
+                            android:background="@null"
+                            android:inputType="textEmailAddress"/>
+
+
+                    </RelativeLayout>
+                    <!--****************************** END OF Email ******************************-->
+
+
+
+                    <!--****************************** Phone Number ******************************-->
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/relLayout_7"
+                        android:layout_below="@+id/relLayout_6"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/grey_border_bottom">
+
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_camera"
+                            android:contentDescription="@string/profile_picture"
+                            />
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/leafsoon_email"
+                            android:id="@+id/editText_phoneNumber_editProfile"
+                            android:layout_marginStart="40dp"
+                            android:background="@null"
+                            android:inputType="phone"/>
+
+
+                    </RelativeLayout>
+                    <!--****************************** END OF Phone Number ******************************-->
+
+
+                </RelativeLayout>
+                <!-- END OF RelLayout Container for the NestedScrollView -->
+
+
+        </android.support.v4.widget.NestedScrollView>
+
+
+    </RelativeLayout>
 
 
 </merge>

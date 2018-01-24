@@ -14,7 +14,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import com.example.karat.instagram.Utils.BottomNavigationHelper;
 import com.example.karat.instagram.R;
@@ -23,19 +22,17 @@ import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
 import java.util.ArrayList;
 
-import javax.security.auth.login.LoginException;
-
 /**
  * Created by karat on 24/01/2018.
  */
 
-public class AccountSettings extends AppCompatActivity {
+public class AccountSettingsActivity extends AppCompatActivity {
 
     private static final String TAG = AppCompatActivity.class.getName();
 
     int ACTIVITY_NUM = 4;
 
-    private Context mContext = AccountSettings.this;
+    private Context mContext;
 
     private SectionsStatePagerAdapter sectionsStatePagerAdapter;
     private RelativeLayout relLayout_container;
@@ -49,6 +46,7 @@ public class AccountSettings extends AppCompatActivity {
         Log.d(TAG, "onCreate: Starting Account Settings");
 
         // Assigning values to the variables.
+        mContext = AccountSettingsActivity.this;
         viewPager = findViewById(R.id.viewPagerContainer);
         relLayout_container = findViewById(R.id.relLayout_container_accSetings);
 
@@ -72,8 +70,8 @@ public class AccountSettings extends AppCompatActivity {
 
     private void setViewPager(int fragmentNumber){
 
-        Log.i(TAG, "setViewPager: Setting up the fragmentNumber#: " + fragmentNumber);
         relLayout_container.setVisibility(View.GONE);
+        Log.d(TAG, "setViewPager: Setting up the fragmentNumber#: " + fragmentNumber);
         viewPager.setAdapter(sectionsStatePagerAdapter);
         viewPager.setCurrentItem(fragmentNumber);
 
