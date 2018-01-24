@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <!-- Container -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorWhite">
+
+        <!-- Top Bar (ToolBar)-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/relLayout_main_top">
+
+            <include layout="@layout/snippet_top_profilebar"/>
+
+        </RelativeLayout>
+        <!-- END OF Top Bar -->
+
+
+
+        <!-- Middle Section (Followers, photo and description)-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/relLayout_main_middle"
+            android:layout_below="@+id/relLayout_main_top"
+            android:background="@drawable/white_grey_border_bottom">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="100"
+                android:id="@+id/linLayout_1">
+
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="25"
+                    android:layout_marginStart="15dp">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:id="@+id/imageView_profilePicture"
+                        android:src="@color/colorGray_400"
+                        android:layout_centerVertical="true"
+                        android:layout_centerHorizontal="true"
+                        app:civ_border_color="@color/colorBlack"
+                        app:civ_border_width="2dp" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="75"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp">
+
+                    <include layout="@layout/snippet_top_followers"/>
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:id="@+id/linLayout_2"
+                android:layout_below="@+id/linLayout_1"
+                android:padding="15dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="16sp"
+                    android:text="Soon Santos"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="16sp"
+                    android:text="Karate / TongilMooDo
+4x World Champion" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorBlue_800"
+                    android:textSize="16sp"
+                    android:text="https://www.leafsoon.com" />
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+        <!-- END OF Middle Section -->
+
+
+        <!-- Bottom Section (GridLayout with the Pictures)-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/relLayout_main_bottom"
+            android:layout_below="@+id/relLayout_main_middle"
+            android:layout_marginBottom="50dp">
+
+            <GridView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/gridView_profilePictures"
+                android:numColumns="3"
+                android:horizontalSpacing="1dp"
+                android:verticalSpacing="1dp"
+                android:gravity="center"
+                android:stretchMode="columnWidth">
+
+
+            </GridView>
+
+        </RelativeLayout>
+
+
+
+
+    </RelativeLayout>
+
+</merge>

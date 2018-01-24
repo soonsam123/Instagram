@@ -8,4 +8,7 @@
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorGray_400">#BDBDBD</color>
     <color name="colorBlack">#000000</color>
+
+    <!-- Blues -->
+    <color name="colorBlue_800">#1565C0</color>
 </resources>
