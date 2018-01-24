@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <!-- Section for fragments -->
+    <include layout="@layout/layout_middle_view_pager"/>
+    <!-- END OF Section for fragments -->
+
+
+    <!-- Container Account Settings -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/relLayout_container_accSetings"
+        android:background="@color/colorWhite">
+
+
+        <!-- ToolBar Top (Back button and Options text) -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/relLayout_main_top">
+
+            <include layout="@layout/snippet_topbar_accountsettings"/>
+
+        </RelativeLayout>
+        <!-- END OF ToolBar Top -->
+
+        <!-- Middle Section (Account Settings text and a ListView with the options) -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/relLayout_main_middle"
+            android:layout_below="@+id/relLayout_main_top">
+
+            <include layout="@layout/layout_middle_accountsettings"/>
+
+        </RelativeLayout>
+        <!-- END OF Middle Section -->
+
+
+        <!-- Bottom Navigation View -->
+
+        <include layout="@layout/layout_bottom_navigation_view"/>
+
+        <!-- END OF Bottom Navigation View -->
+
+
+    </RelativeLayout>
+
+</android.support.design.widget.CoordinatorLayout>

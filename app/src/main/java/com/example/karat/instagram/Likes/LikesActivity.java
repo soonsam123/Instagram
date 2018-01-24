@@ -8,7 +8,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.example.karat.instagram.BottomNavigationHelper;
+import com.example.karat.instagram.Utils.BottomNavigationHelper;
 import com.example.karat.instagram.R;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 

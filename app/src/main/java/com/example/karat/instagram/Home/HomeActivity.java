@@ -9,8 +9,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.example.karat.instagram.BottomNavigationHelper;
+import com.example.karat.instagram.Utils.BottomNavigationHelper;
 import com.example.karat.instagram.R;
+import com.example.karat.instagram.Utils.SectionsPageAdapter;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
 public class HomeActivity extends AppCompatActivity {

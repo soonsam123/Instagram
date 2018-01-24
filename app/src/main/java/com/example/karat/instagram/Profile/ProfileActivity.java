@@ -1,19 +1,18 @@
 package com.example.karat.instagram.Profile;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.ImageView;
 
-import com.example.karat.instagram.BottomNavigationHelper;
+import com.example.karat.instagram.Utils.BottomNavigationHelper;
 import com.example.karat.instagram.R;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
@@ -47,22 +46,14 @@ public class ProfileActivity extends AppCompatActivity {
         Toolbar profileToolBar = findViewById(R.id.profileToolBar);
         setSupportActionBar(profileToolBar);
 
-        profileToolBar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+        ImageView accSettingsMenu = findViewById(R.id.imgView_profile_accSettingsMenu);
+        accSettingsMenu.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onMenuItemClick(MenuItem item) {
+            public void onClick(View view) {
 
-                switch (item.getItemId()){
+                Intent intentAccountSetting = new Intent(mContext, AccountSettings.class);
+                startActivity(intentAccountSetting);
 
-                    case R.id.editProfile_id:
-                        Toast.makeText(mContext, "Edit Profile", Toast.LENGTH_SHORT).show();
-                        break;
-                    case R.id.addFriend_id:
-                        Toast.makeText(mContext, "Add Friend", Toast.LENGTH_SHORT).show();
-                        break;
-
-                }
-
-                return false;
             }
         });
 
@@ -81,12 +72,4 @@ public class ProfileActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-
-        getMenuInflater().inflate(R.menu.menu_top_toolbar_profile, menu);
-
-        return true;
-
-    }
 }
