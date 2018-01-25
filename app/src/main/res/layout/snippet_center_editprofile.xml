@@ -63,7 +63,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_camera"
+                    android:src="@drawable/ic_username"
                     />
 
                 <EditText
@@ -96,7 +96,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_camera"
+                    android:src="@drawable/ic_name"
                     android:contentDescription="@string/profile_picture"
                     />
 
@@ -130,7 +130,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_camera"
+                    android:src="@drawable/ic_website"
                     android:contentDescription="@string/profile_picture"
                     />
 
@@ -164,7 +164,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_camera"
+                    android:src="@drawable/ic_location"
                     android:contentDescription="@string/profile_picture"
                     />
 
@@ -213,7 +213,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_camera"
+                    android:src="@drawable/ic_email"
                     android:contentDescription="@string/profile_picture"
                     />
 
@@ -247,14 +247,14 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_camera"
+                    android:src="@drawable/ic_phonenumber"
                     android:contentDescription="@string/profile_picture"
                     />
 
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/leafsoon_email"
+                    android:hint="@string/_62_9_9260_2380"
                     android:id="@+id/editText_phoneNumber_editProfile"
                     android:layout_marginStart="40dp"
                     android:background="@null"
