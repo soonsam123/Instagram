@@ -49,7 +49,7 @@
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:layout_width="80dp"
                         android:layout_height="80dp"
-                        android:id="@+id/imageView_profilePicture"
+                        android:id="@+id/imgView_profilePicture"
                         android:src="@color/colorGray_400"
                         android:layout_centerVertical="true"
                         android:layout_centerHorizontal="true"

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linLayout_container_login"
+        android:layout_marginTop="40dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:src="@drawable/instagram_logo"
+            android:layout_gravity="center"
+            android:contentDescription="@string/instagram_logo"
+            android:id="@+id/instagramLogo_login"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/register_new_account"
+            android:textColor="@color/colorBlack"
+            android:layout_gravity="center"
+            android:textSize="16sp"
+            android:layout_marginTop="15dp"/>
+
+
+        <!--************************ Email ************************-->
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/emailTextInput_login"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp">
+
+
+            <android.support.v7.widget.AppCompatEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/emailEditText_login"
+                android:hint="@string/email"
+                android:inputType="textEmailAddress"/>
+
+
+        </android.support.design.widget.TextInputLayout>
+        <!--************************ END OF Email ************************-->
+
+
+        <!--************************ Full Name ************************-->
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/fullNameTextInput_login"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp">
+
+
+            <android.support.v7.widget.AppCompatEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/fullNameEditText_login"
+                android:hint="@string/full_name"
+                android:inputType="text"/>
+
+
+        </android.support.design.widget.TextInputLayout>
+        <!--************************ END OF Full Name ************************-->
+
+
+
+        <!--************************ Password ************************-->
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/passwordTextInput_login"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            app:passwordToggleEnabled="true">
+
+
+            <android.support.v7.widget.AppCompatEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/passwordEditText_login"
+                android:hint="@string/password"
+                android:inputType="textPassword"/>
+
+
+        </android.support.design.widget.TextInputLayout>
+        <!--************************ END OF Password ************************-->
+
+
+        <!--************************ Register Button ************************-->
+        <android.support.v7.widget.AppCompatButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/register"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/white_rounded_button"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="15dp"/>
+        <!--************************ END OF Login Button ************************-->
+
+
+    </LinearLayout>
+
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar_login"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/linLayout_container_login"/>
+
+</RelativeLayout>

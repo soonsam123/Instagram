@@ -8,4 +8,12 @@
     <string name="private_information">PRIVATE INFORMATION</string>
     <string name="leafsoon_email">contato@leafsoon.com</string>
     <string name="_62_9_9260_2380">62 9 9260 2380</string>
+    <string name="instagram_logo">Instagram Logo</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="noaccount_createone">No account yet? Create one</string>
+    <string name="register_new_account">REGISTER A NEW ACCOUNT</string>
+    <string name="full_name">Full Name</string>
+    <string name="register">Register</string>
 </resources>
