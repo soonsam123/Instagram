@@ -28,6 +28,11 @@ import com.google.firebase.FirebaseTooManyRequestsException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 /**
  * Created by karat on 26/01/2018.
@@ -44,10 +49,14 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private ProgressBar mProgressBar;
     private RelativeLayout relativeLayout;
     private Context mContext = RegisterActivity.this;
+    private String email, username, password;
+    private String append = "";
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseMethods firebaseMethods;
+    private FirebaseDatabase mFirebaseDatabase;
+    private DatabaseReference myRef;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -104,13 +113,14 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         Log.i(TAG, "hideKeyBoard: Hiding the keyboard");
 
-        if (this.getCurrentFocus() != null) {
-            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-            if (inputMethodManager != null) {
-                inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        try {
+            if (this.getCurrentFocus() != null) {
+                InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                if (inputMethodManager != null) {
+                    inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+                }
             }
-        }
-
+        } catch (Exception e){e.printStackTrace();}
     }
 
     // Register when pressind the enter key in the last field.
@@ -142,9 +152,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
                 hideKeyBoard();
 
-                String email = mEmail.getText().toString();
-                String username = mUsername.getText().toString();
-                String password = mPassword.getText().toString();
+                email = mEmail.getText().toString();
+                username = mUsername.getText().toString();
+                password = mPassword.getText().toString();
 
                 if (stringIsNull(email) || stringIsNull(username) || stringIsNull(password)){
                     Toast.makeText(RegisterActivity.this, "You must fill in all the fields", Toast.LENGTH_LONG).show();
@@ -170,14 +180,37 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         mAuth = FirebaseAuth.getInstance();
 
+        // Create the firebase and the reference
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
+        myRef = mFirebaseDatabase.getReference();
+
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
+                final FirebaseUser user = firebaseAuth.getCurrentUser();
 
                 if (user != null){
                     // User is logged in
                     Log.i(TAG, "onAuthStateChanged: User logged in: " + user.getUid());
+
+                    // Check if there is any change of value in the reference.
+                    myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+
+                        if (firebaseMethods.checkIfUsernameExists(username, dataSnapshot)){
+                            append = myRef.push().getKey().substring(3,10);
+                            Log.i(TAG, "onDataChange: Appending " + append + " to " + username);
+                            }
+                        username = username + append;
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+
                 } else {
                     // User is logged out
                     Log.i(TAG, "onAuthStateChanged: User logged out");

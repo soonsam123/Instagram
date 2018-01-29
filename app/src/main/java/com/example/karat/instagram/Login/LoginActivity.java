@@ -72,6 +72,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         Log.i(TAG, "setUpWidgets: Setting up the widgets");
         
         mContext = LoginActivity.this;
+
         mProgressBar = findViewById(R.id.progressBar_login);
         mEmail = findViewById(R.id.emailEditText_login);
         mPassword = findViewById(R.id.passwordEditText_login);
