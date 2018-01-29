@@ -1,6 +1,7 @@
 package com.example.karat.instagram.Profile;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
@@ -15,9 +16,12 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 
+import com.example.karat.instagram.Login.LoginActivity;
 import com.example.karat.instagram.Utils.BottomNavigationHelper;
 import com.example.karat.instagram.R;
 import com.example.karat.instagram.Utils.SectionsStatePagerAdapter;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
 import java.util.ArrayList;
@@ -37,6 +41,9 @@ public class AccountSettingsActivity extends AppCompatActivity {
     private SectionsStatePagerAdapter sectionsStatePagerAdapter;
     private RelativeLayout relLayout_container;
     private ViewPager viewPager;
+
+    private FirebaseAuth mAuth;
+    private FirebaseUser currentUser;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -93,11 +100,19 @@ public class AccountSettingsActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                setViewPager(i);
+                // Check if the user clicked in sign out.
+                if (i == 1) {
+                    mAuth = FirebaseAuth.getInstance();
+                    currentUser = mAuth.getCurrentUser();
+                    mAuth.signOut();
 
+                    Intent intentLogin = new Intent(mContext, LoginActivity.class);
+                    startActivity(intentLogin);
+                } else {
+                    setViewPager(i);
+                }
             }
         });
-
     }
 
     private void setUpToolBar(){

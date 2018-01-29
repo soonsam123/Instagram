@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/relLayout_container_register">
 
 
     <LinearLayout
@@ -18,12 +19,13 @@
             android:src="@drawable/instagram_logo"
             android:layout_gravity="center"
             android:contentDescription="@string/instagram_logo"
-            android:id="@+id/instagramLogo_login"/>
+            android:id="@+id/instagramLogo_register"/>
 
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/registerNewAccount_register"
             android:text="@string/register_new_account"
             android:textColor="@color/colorBlack"
             android:layout_gravity="center"
@@ -35,7 +37,7 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/emailTextInput_login"
+            android:id="@+id/emailTextInput_register"
             android:layout_marginTop="20dp"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp">
@@ -44,7 +46,7 @@
             <android.support.v7.widget.AppCompatEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/emailEditText_login"
+                android:id="@+id/emailEditText_register"
                 android:hint="@string/email"
                 android:inputType="textEmailAddress"/>
 
@@ -57,7 +59,7 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/fullNameTextInput_login"
+            android:id="@+id/fullNameTextInput_register"
             android:layout_marginTop="20dp"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp">
@@ -66,7 +68,7 @@
             <android.support.v7.widget.AppCompatEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/fullNameEditText_login"
+                android:id="@+id/fullNameEditText_register"
                 android:hint="@string/full_name"
                 android:inputType="text"/>
 
@@ -80,7 +82,7 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/passwordTextInput_login"
+            android:id="@+id/passwordTextInput_register"
             android:layout_marginTop="20dp"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
@@ -90,7 +92,7 @@
             <android.support.v7.widget.AppCompatEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/passwordEditText_login"
+                android:id="@+id/passwordEditText_register"
                 android:hint="@string/password"
                 android:inputType="textPassword"/>
 
@@ -103,6 +105,7 @@
         <android.support.v7.widget.AppCompatButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/registerButton_register"
             android:text="@string/register"
             android:layout_marginTop="20dp"
             android:background="@drawable/white_rounded_button"
@@ -118,7 +121,7 @@
     <ProgressBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/progressBar_login"
+        android:id="@+id/progressBar_register"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/linLayout_container_login"/>
 

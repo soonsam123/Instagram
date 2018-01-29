@@ -16,4 +16,5 @@
     <string name="register_new_account">REGISTER A NEW ACCOUNT</string>
     <string name="full_name">Full Name</string>
     <string name="register">Register</string>
+    <string name="fillin_all_fields">You must fill in all the fields</string>
 </resources>
