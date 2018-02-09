@@ -18,7 +18,7 @@ import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
 public class ShareActivity extends AppCompatActivity {
 
-    private static final String TAG = AppCompatActivity.class.getName();
+    private static final String TAG = "ShareActivity";
 
     private Context mContext = ShareActivity.this;
 

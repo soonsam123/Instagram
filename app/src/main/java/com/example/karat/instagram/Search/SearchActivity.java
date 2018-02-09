@@ -18,7 +18,7 @@ import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
 public class SearchActivity extends AppCompatActivity {
 
-    private static final String TAG = AppCompatActivity.class.getName();
+    private static final String TAG = "SearchActivity";
 
     private Context mContext = SearchActivity.this;
 

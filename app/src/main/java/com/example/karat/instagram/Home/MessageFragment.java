@@ -13,7 +13,7 @@ import com.example.karat.instagram.R;
 /*===============Fragment for Messages when you type Message Icon===============*/
 public class MessageFragment extends Fragment{
 
-    private static final String TAG = Fragment.class.getName();
+    private static final String TAG = "MessageFragment";
 
 
     // Inflates the layout for Message.

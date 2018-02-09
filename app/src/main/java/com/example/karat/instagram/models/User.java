@@ -7,11 +7,11 @@ package com.example.karat.instagram.models;
 public class User {
 
     private String email;
-    private String phone_number;
+    private long phone_number;
     private String user_id;
     private String username;
 
-    public User(String email, String phone_number, String user_id, String username) {
+    public User(String email, long phone_number, String user_id, String username) {
         this.email = email;
         this.phone_number = phone_number;
         this.user_id = user_id;
@@ -25,6 +25,7 @@ public class User {
 
 
     // Don't change the name of Getters and Setters.
+
     public String getEmail() {
         return email;
     }
@@ -33,11 +34,11 @@ public class User {
         this.email = email;
     }
 
-    public String getPhone_number() {
+    public long getPhone_number() {
         return phone_number;
     }
 
-    public void setPhone_number(String phone_number) {
+    public void setPhone_number(long phone_number) {
         this.phone_number = phone_number;
     }
 
@@ -61,7 +62,7 @@ public class User {
     public String toString() {
         return "User{" +
                 "email='" + email + '\'' +
-                ", phone_number='" + phone_number + '\'' +
+                ", phone_number=" + phone_number +
                 ", user_id='" + user_id + '\'' +
                 ", username='" + username + '\'' +
                 '}';

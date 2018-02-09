@@ -33,7 +33,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener, View.OnKeyListener {
 
-    private static final String TAG = AppCompatActivity.class.getName();
+    private static final String TAG = "LoginActivity";
 
     // Firebase
     private FirebaseAuth mAuth;
@@ -119,6 +119,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         return false;
     }
 
+
+    // Returning the view from this activity. So I can access it and put SnackBars.
+    public View getView(){
+
+        return this.getCurrentFocus();
+    }
+
     /*===================================== Firebase =====================================*/
 
 
@@ -139,11 +146,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     Toast.makeText(mContext, R.string.fillin_all_fields, Toast.LENGTH_SHORT).show();
                 } else {
 
-
                     Intent intentHome = new Intent(mContext, HomeActivity.class);
 
                     firebaseMethods = new FirebaseMethods(mContext);
                     firebaseMethods.SignInWithEmail(email, password, mProgressBar, intentHome);
+
+                    // Finish this LoginActivity if the user is loggged in successfully.
+                    FirebaseUser user = mAuth.getCurrentUser();
+                    if (user != null){finish();}
 
 
 

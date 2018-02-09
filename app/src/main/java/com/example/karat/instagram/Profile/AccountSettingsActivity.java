@@ -32,7 +32,7 @@ import java.util.ArrayList;
 
 public class AccountSettingsActivity extends AppCompatActivity {
 
-    private static final String TAG = AppCompatActivity.class.getName();
+    private static final String TAG = "AccountSettingsActivity";
 
     int ACTIVITY_NUM = 4;
 
@@ -61,6 +61,21 @@ public class AccountSettingsActivity extends AppCompatActivity {
         setUpToolBar();
         setUpFragments();
         setUpListView();
+
+        getIncomingIntent();
+
+    }
+
+    private void getIncomingIntent(){
+
+        Intent intent = getIntent();
+
+        if (intent.hasExtra(getString(R.string.calling_activity))){
+            Log.i(TAG, "getIncomingIntent: Getting the calling activity from Profile Fragment " + getString(R.string.profile_activity));
+
+            setViewPager(sectionsStatePagerAdapter.getFragmentNumber(getString(R.string.edit_profile)));
+
+        }
 
     }
 
@@ -99,18 +114,7 @@ public class AccountSettingsActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-                // Check if the user clicked in sign out.
-                if (i == 1) {
-                    mAuth = FirebaseAuth.getInstance();
-                    currentUser = mAuth.getCurrentUser();
-                    mAuth.signOut();
-
-                    Intent intentLogin = new Intent(mContext, LoginActivity.class);
-                    startActivity(intentLogin);
-                } else {
-                    setViewPager(i);
-                }
+                setViewPager(i);
             }
         });
     }

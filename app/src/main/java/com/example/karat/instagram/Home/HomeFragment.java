@@ -14,7 +14,7 @@ import com.example.karat.instagram.R;
 /*===============Fragment for Home when you type Instagram Logo===============*/
 public class HomeFragment extends Fragment {
 
-    private static final String TAG = Fragment.class.getName();
+    private static final String TAG = "HomeFragment";
 
 
     // Inflates the layout for Home.

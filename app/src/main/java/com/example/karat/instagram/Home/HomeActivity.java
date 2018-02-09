@@ -23,7 +23,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 
 public class HomeActivity extends AppCompatActivity {
 
-    private static final String TAG = AppCompatActivity.class.getName();
+    private static final String TAG = "HomeActivity";
 
     private Context mContext = HomeActivity.this;
     int ACTIVITY_NUM = 0;
@@ -44,6 +44,9 @@ public class HomeActivity extends AppCompatActivity {
         initImageLoader();
         setUpBottomNavViewEx();
         setUpViewPager();
+
+
+
 
     }
 

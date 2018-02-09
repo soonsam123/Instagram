@@ -12,8 +12,7 @@ import com.example.karat.instagram.R;
 /*===============Fragment for Camera when you type Camera Icon===============*/
 public class CameraFragment extends Fragment {
 
-    private static final String TAG = Fragment.class.getName();
-
+    private static final String TAG = "CameraFragment";
 
     // Inflates the layout for Camera.
     @Nullable

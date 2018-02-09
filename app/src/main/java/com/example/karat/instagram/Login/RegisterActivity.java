@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatEditText;
@@ -22,6 +23,8 @@ import android.widget.Toast;
 import com.example.karat.instagram.Home.HomeActivity;
 import com.example.karat.instagram.R;
 import com.example.karat.instagram.Utils.FirebaseMethods;
+import com.example.karat.instagram.Utils.StringManipulation;
+import com.example.karat.instagram.models.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseTooManyRequestsException;
@@ -32,6 +35,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 /**
@@ -40,15 +44,20 @@ import com.google.firebase.database.ValueEventListener;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener, View.OnKeyListener {
 
-    private static final String TAG = AppCompatActivity.class.getName();
+    private static final String TAG = "RegisterActivity";
 
     private ImageView instagramLogo;
     private TextView registerNewAccount;
+
     private AppCompatEditText mEmail, mUsername, mPassword;
     private AppCompatButton registerButton;
+
     private ProgressBar mProgressBar;
+
     private RelativeLayout relativeLayout;
+
     private Context mContext = RegisterActivity.this;
+
     private String email, username, password;
     private String append = "";
 
@@ -57,6 +66,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private FirebaseMethods firebaseMethods;
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference myRef;
+    private FirebaseUser user;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -141,10 +151,62 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         if (string.equals("")){return true;} else {return false;}
     }
 
+
+    private void checkIfUsernameExists(final String username){
+        Log.i(TAG, "checkIfUsernameExists: Checking if the " + username +" already exists.");
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+
+        // This query will receive the username the user is trying to change.
+        Query query = reference
+                .child(getString(R.string.dbname_users))
+                .orderByChild(getString(R.string.field_username))
+                .equalTo(username);
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot singleSnapshot: dataSnapshot.getChildren()){
+
+                    // There is a username like this one in the database. D
+                    if (singleSnapshot.exists()){
+                        // do not change the username.
+                        Log.i(TAG, "onDataChange: FOUND A MATCH: " + singleSnapshot.getValue(User.class).getUsername());
+
+                        append = myRef.push().getKey().substring(3, 10);
+                        Log.i(TAG, "onDataChange: Appending " + append + " to " + username);
+
+                    }
+
+                }
+
+                String newUsername = "";
+                newUsername = username + append;
+
+                Log.i(TAG, "onDataChange: Data changed, will addNewUser now: " + newUsername);
+                firebaseMethods.addNewUser(email, newUsername, "", "", "");
+
+                finish();
+
+                // If it is not verified yet log out.
+                if (!user.isEmailVerified()){mAuth.signOut();}
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+    }
+
+
     /*===================================== Firebase =====================================*/
     private void init(){
 
-        Log.i(TAG, "init: Initializing the registraition");
+        Log.i(TAG, "init: Initializing the registration");
 
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -163,7 +225,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     Intent intentHome = new Intent(mContext, HomeActivity.class);
 
                     firebaseMethods = new FirebaseMethods(mContext);
-                    firebaseMethods.RegisterNewEmail(email, username, password, mProgressBar, intentHome);
+                    firebaseMethods.RegisterNewEmail(email, username, password, mProgressBar);
 
                     // If registerNewEmail complete was successful.
                     // finish();
@@ -187,7 +249,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                final FirebaseUser user = firebaseAuth.getCurrentUser();
+                user = firebaseAuth.getCurrentUser();
 
                 if (user != null){
                     // User is logged in
@@ -198,12 +260,11 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
 
-                        if (firebaseMethods.checkIfUsernameExists(username, dataSnapshot)){
-                            append = myRef.push().getKey().substring(3,10);
-                            Log.i(TAG, "onDataChange: Appending " + append + " to " + username);
-                            }
-                        username = username + append;
+                            // Add the information to the database.
+                            checkIfUsernameExists(StringManipulation.condenseUsername(username));
+
                         }
+
 
                         @Override
                         public void onCancelled(DatabaseError databaseError) {

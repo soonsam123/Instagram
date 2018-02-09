@@ -17,4 +17,37 @@
     <string name="full_name">Full Name</string>
     <string name="register">Register</string>
     <string name="fillin_all_fields">You must fill in all the fields</string>
+
+    <!-- Database -->
+    <string name="dbname_users">users</string>
+    <string name="dbname_user_account_settings">user_account_settings</string>
+
+    <string name="are_you_sure_want_signout">Are you sure you want to sign out?</string>
+    <string name="cancel">CANCEL</string>
+
+    <!-- Fragments -->
+    <string name="fragment_profile">Profile</string>
+
+
+    <string name="no_name">No Name</string>
+
+    <!-- Calling Activity -->
+    <string name="calling_activity">calling_activity</string>
+
+    <!-- Activities -->
+    <string name="profile_activity">Profile Activity</string>
+
+    <!-- Field names -->
+    <string name="field_description">description</string>
+    <string name="field_display_name">display_name</string>
+    <string name="field_followers">followers</string>
+    <string name="field_following">following</string>
+    <string name="field_posts">posts</string>
+    <string name="field_profile_photo">profile_photo</string>
+    <string name="field_username">username</string>
+    <string name="field_website">website</string>
+    <string name="field_email">email</string>
+    <string name="field_phone_number">phone_number</string>
+    <string name="field_user_id">user_id</string>
+
 </resources>

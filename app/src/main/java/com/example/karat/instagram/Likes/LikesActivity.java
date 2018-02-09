@@ -18,7 +18,7 @@ import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
 public class LikesActivity extends AppCompatActivity {
 
-    private static final String TAG = AppCompatActivity.class.getName();
+    private static final String TAG = "LikesActivity";
 
     private Context mContext = LikesActivity.this;
 

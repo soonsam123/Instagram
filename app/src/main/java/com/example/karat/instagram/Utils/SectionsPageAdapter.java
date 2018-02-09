@@ -11,7 +11,7 @@ import java.util.List;
 /*=============This adapter put the fragments into a list and the display in the viewPager=============*/
 public class SectionsPageAdapter extends FragmentPagerAdapter {
 
-    private static final String TAG = FragmentPagerAdapter.class.getName();
+    private static final String TAG = "SectionsPageAdapter";
 
     // declaring fragmentListHome as static mess up the things.
     // Static variable can be acessed from others activity without instantiating.

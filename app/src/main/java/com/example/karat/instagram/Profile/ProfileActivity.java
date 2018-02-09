@@ -3,7 +3,9 @@ package com.example.karat.instagram.Profile;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -28,7 +30,7 @@ import java.util.ArrayList;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    private static final String TAG = AppCompatActivity.class.getName();
+    private static final String TAG = "ProfileActivity";
 
     private Context mContext = ProfileActivity.this;
 
@@ -44,16 +46,31 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
         Log.d(TAG, "onCreate: Starting Likes Activity");
 
-        setUpWidgets();
+        /*setUpWidgets();
         setUpBottomNavViewEx();
         setUpToolBar();
         setProfilePicture();
 
         tempGridSetup();
 
+*/
+
+        init();
     }
 
-    private void tempGridSetup(){
+    private void init(){
+
+        Log.i(TAG, "init: fragmenting " + getString(R.string.fragment_profile));
+
+        ProfileFragment profileFragment = new ProfileFragment();
+        FragmentTransaction transaction = ProfileActivity.this.getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.frameLayout_container_profile, profileFragment);
+        transaction.addToBackStack(getString(R.string.fragment_profile));
+        transaction.commit();
+
+    }
+
+  /*  private void tempGridSetup(){
 
         ArrayList<String> imgURLs = new ArrayList<>();
 
@@ -128,5 +145,5 @@ public class ProfileActivity extends AppCompatActivity {
         menuItem.setChecked(true);
 
     }
-
+*/
 }

@@ -16,7 +16,8 @@
         <!-- RelLayout Container for the NestedScrollView -->
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:id="@+id/relLayout_container_centerEditProfile">
 
             <!--****************************** Picture and Change Photo TextView ******************************-->
             <RelativeLayout
@@ -39,6 +40,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/textView_changePhoto_editProfile"
                     android:text="@string/change_photo"
                     android:textSize="14sp"
                     android:textColor="@color/colorBlue_800"
@@ -70,7 +72,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/editText_username_editProfile"
-                    android:hint="soonsantos"
+                    android:hint="username"
                     android:layout_marginStart="40dp"
                     android:background="@null"
                     android:inputType="text"/>
@@ -103,7 +105,7 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Soon Santos"
+                    android:hint="display name"
                     android:id="@+id/editText_name_editProfile"
                     android:layout_marginStart="40dp"
                     android:background="@null"
@@ -137,7 +139,7 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="www.leafsoon.com"
+                    android:hint="website"
                     android:id="@+id/editText_website_editProfile"
                     android:layout_marginStart="40dp"
                     android:background="@null"
@@ -171,8 +173,8 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Anápolis-GO, Brazil"
-                    android:id="@+id/editText_location_editProfile"
+                    android:hint="description"
+                    android:id="@+id/editText_description_editProfile"
                     android:layout_marginStart="40dp"
                     android:background="@null"
                     android:inputType="textPostalAddress"/>
@@ -220,7 +222,7 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/leafsoon_email"
+                    android:hint="email"
                     android:id="@+id/editText_email_editProfile"
                     android:layout_marginStart="40dp"
                     android:background="@null"
@@ -254,7 +256,7 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/_62_9_9260_2380"
+                    android:hint="phone number"
                     android:id="@+id/editText_phoneNumber_editProfile"
                     android:layout_marginStart="40dp"
                     android:background="@null"
@@ -264,6 +266,13 @@
             </RelativeLayout>
             <!--****************************** END OF Phone Number ******************************-->
 
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="40dp"
+                android:id="@+id/progressBar_editProfile"/>
 
         </RelativeLayout>
         <!-- END OF RelLayout Container for the NestedScrollView -->

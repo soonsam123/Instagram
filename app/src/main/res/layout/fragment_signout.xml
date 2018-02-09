@@ -1,20 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
+        <android.support.v7.widget.CardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/sign_out"
-            android:textColor="@color/colorBlack"
-            android:textSize="35sp"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"/>
+            android:id="@+id/carView_signOut"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            app:cardBackgroundColor="@color/colorWhite"
+            app:cardCornerRadius="4dp">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="15dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/are_you_sure_want_signout"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="18sp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/textViewAreYouSure"
+                    />
+
+                <android.support.v7.widget.AppCompatButton
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:text="@string/sign_out"
+                    android:layout_below="@+id/textViewAreYouSure"
+                    android:background="@drawable/white_rounded_button"
+                    android:layout_marginTop="15dp"
+                    android:id="@+id/signOut_button_signout"
+                    android:layout_alignStart="@+id/textViewAreYouSure"/>
+
+
+                <android.support.v7.widget.AppCompatButton
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:text="@string/cancel"
+                    android:layout_below="@+id/textViewAreYouSure"
+                    android:background="@drawable/white_rounded_button"
+                    android:layout_marginTop="15dp"
+                    android:id="@+id/cancel_button_signout"
+                    android:layout_alignEnd="@+id/textViewAreYouSure"/>
+
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
+
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/progressBar_signOut"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"/>
 
     </RelativeLayout>
 
