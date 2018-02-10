@@ -49,5 +49,8 @@
     <string name="field_email">email</string>
     <string name="field_phone_number">phone_number</string>
     <string name="field_user_id">user_id</string>
+    <string name="confirm_your_password">Confirm your password</string>
+    <string name="confirm">Confirm</string>
+    <string name="confirm_password_dialog">ConfirmPasswordDialog</string>
 
 </resources>

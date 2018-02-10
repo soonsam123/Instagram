@@ -5,6 +5,8 @@ import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -24,10 +26,16 @@ import com.example.karat.instagram.R;
 import com.example.karat.instagram.Utils.FirebaseMethods;
 import com.example.karat.instagram.Utils.StringManipulation;
 import com.example.karat.instagram.Utils.UniversalImageLoader;
+import com.example.karat.instagram.dialogs.ConfirmPasswordDialog;
 import com.example.karat.instagram.models.User;
 import com.example.karat.instagram.models.UserSettings;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.ProviderQueryResult;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -38,8 +46,7 @@ import com.google.firebase.database.ValueEventListener;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 
-public class EditProfileFragment extends Fragment implements View.OnClickListener {
-
+public class EditProfileFragment extends Fragment implements View.OnClickListener, ConfirmPasswordDialog.OnConfirmPasswordListener {
 
     private static final String TAG = "EditProfileFragment";
 
@@ -49,8 +56,10 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
     private Toolbar toolbar;
     private ProgressBar mProgressBar;
     private Context mContext;
-    private RelativeLayout relLayout;
     private ImageView mBackArrow, mCheck;
+
+    private RelativeLayout relLayout;
+    private CoordinatorLayout coordinatorLayout;
 
     // Firebase
     private FirebaseAuth mAuth;
@@ -61,7 +70,6 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
 
     // User
     private UserSettings current_user_settings;
-
 
 
     @Nullable
@@ -82,9 +90,10 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
 
     /**
      * Assigning the database real time values to the variables.
+     *
      * @param settings
      */
-    private void setUpEditProfileWidgetsWithDBValue(UserSettings settings){
+    private void setUpEditProfileWidgetsWithDBValue(UserSettings settings) {
         Log.i(TAG, "setUpEditProfileWidgetsWithDBValue: Asssigning the real time database values to the variables: " + settings.toString());
 
         current_user_settings = settings;
@@ -104,9 +113,10 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
 
     /**
      * Setting up the widgets reference from the layout editProfile Fragment.
+     *
      * @param view
      */
-    private void setUpWidgets(View view){
+    private void setUpWidgets(View view) {
         Log.i(TAG, "setUpWidgets: Setting up the widgets references from the layout");
 
         toolbar = view.findViewById(R.id.toolBar_editProfile);
@@ -124,6 +134,7 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
         mProgressBar = view.findViewById(R.id.progressBar_editProfile);
 
         relLayout = view.findViewById(R.id.relLayout_container_centerEditProfile);
+        coordinatorLayout = view.findViewById(R.id.coordinatorLayout_editProfile);
 
         mContext = getActivity();
 
@@ -131,7 +142,7 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
 
     }
 
-    private void saveProfileChanges(){
+    private void saveProfileChanges() {
         Log.i(TAG, "saveProfileChanges: Saving the profile changes");
 
         // Getting the texts from the fields.
@@ -142,33 +153,131 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
         final String email = mEmail.getText().toString();
         final long phone_number = Long.parseLong(mPhoneNumber.getText().toString());
 
-        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
 
-                // The user changed the username for something. Check if it is available.
-                if (!current_user_settings.getSettings().getUsername().equals(username)){
-                    Log.i(TAG, "onDataChange: Checking if this username already exists " + username);
+        // The user changed the USERNAME. Check if it is available.
+        if (!current_user_settings.getSettings().getUsername().equals(username)) {
+            Log.i(TAG, "onDataChange: Checking if this username already exists " + username);
 
-                    checkIfUsernameExists(username);
+            checkIfUsernameExists(username);
 
-                } else {
-                    // The user did not change the username
-                    Log.i(TAG, "onDataChange: The user did not try to change the username");
-                }
+        } else {
+            // The user DID NOT change the USERNAME
+            Log.i(TAG, "onDataChange: The user did not try to change the username");
+        }
 
 
+        // The user changed the DISPLAY NAME.
+        if (!current_user_settings.getSettings().getDisplay_name().equals(display_name)) {
+            firebaseMethods.updateDisplayName(display_name);
+        }
 
-            }
+        // The user changed the WEBSITE.
+        if (!current_user_settings.getSettings().getWebsite().equals(website)) {
+            firebaseMethods.updateWebsite(website);
+        }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+        // The user changed the DESCRIPTION.
+        if (!current_user_settings.getSettings().getDescription().equals(description)) {
+            firebaseMethods.updateDescription(description);
+        }
 
-            }
-        });
+        // The user change the EMAIL.
+        if (!current_user_settings.getUser().getEmail().equals(email)) {
+            // Change the email.
+
+            ConfirmPasswordDialog dialog = new ConfirmPasswordDialog();
+            dialog.show(getFragmentManager(), getString(R.string.confirm_password_dialog));
+            // When the dialog closes it takes back to EditProfileFragment again, otherwise it would go to MainActivity.
+            dialog.setTargetFragment(EditProfileFragment.this, 1);
+
+        }
+
+        // The user changed the PHONE NUMBER.
+        if (!String.valueOf(current_user_settings.getUser().getPhone_number()).equals(String.valueOf(phone_number))) {
+            firebaseMethods.updatePhoneNumber(phone_number);
+        }
+
 
     }
 
+
+    /*.**************************************** CONFIRM METHODS ****************************************/
+
+    @Override
+    public void onConfirmPassword(String password) {
+        // WARNING: Never prints the password in the logs in a release app.
+        // I am doing this only with the purpose of debugging.
+        Log.i(TAG, "onConfirmPassword: Password: " + password);
+
+        /*.********************** 1º STEP - Re-authenticate the email **********************/
+
+        AuthCredential credential = EmailAuthProvider
+                .getCredential(mAuth.getCurrentUser().getEmail(), password);
+
+        mAuth.getCurrentUser().reauthenticate(credential)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()){
+                            Log.i(TAG, "onComplete: Reauthenticated");
+
+                            /*.********************** 2º STEP - Check if there is another equal email **********************/
+                            mAuth.fetchProvidersForEmail(mEmail.getText().toString())
+                                    .addOnCompleteListener(new OnCompleteListener<ProviderQueryResult>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<ProviderQueryResult> task) {
+
+                                            if (task.isSuccessful()){
+                                                try {
+                                                    if (task.getResult().getProviders().size() == 1) {
+                                                        Log.i(TAG, "onComplete: There is another email equal this one");
+                                                        Toast.makeText(mContext, "This email is already in use.", Toast.LENGTH_SHORT).show();
+                                                    } else {
+                                                        Log.i(TAG, "onComplete: No email in use as this one. ");
+
+
+                                                        /*.********************** 3º STEP - Finally, updates the email **********************/
+                                                        mAuth.getCurrentUser().updateEmail(mEmail.getText().toString())
+                                                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                    @Override
+                                                                    public void onComplete(@NonNull Task<Void> task) {
+                                                                        if (task.isSuccessful()) {
+                                                                            Log.i(TAG, "onComplete: User email address updated");
+                                                                            // Updates the email in the firebase database also.
+                                                                            firebaseMethods.updateEmail(mEmail.getText().toString());
+                                                                            Toast.makeText(mContext, "Your email was updated. "
+                                                                                    , Toast.LENGTH_SHORT).show();
+                                                                            getActivity().finish();
+                                                                        }
+                                                                    }
+                                                                });
+
+                                                    }
+                                                } catch (NullPointerException e){
+                                                    Log.i(TAG, "onComplete: NullPointerException: " + e.getMessage());
+                                                }
+
+                                            }
+
+                                        }
+                                    });
+
+                        } else {
+                            Log.i(TAG, "onComplete: Failed to reauthenticate email");
+                            // Wrong password or the user does not have a password.
+                            Toast.makeText(mContext, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
+    }
+
+    /*.**************************************** CHECK METHODS ****************************************/
+
+    /**
+     * Check if the username
+     * @param username already exists. If not, updated it.
+     */
     private void checkIfUsernameExists(final String username){
         Log.i(TAG, "checkIfUsernameExists: Checking if the " + username +" already exists.");
 
@@ -186,10 +295,9 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
                 // There is no such username like this one in the database.
                 if (!dataSnapshot.exists()){
                     // add the username
-
+                    Log.i(TAG, "onDataChange: Saving new username");
                     firebaseMethods.updateUsername(username);
 
-                    Toast.makeText(mContext, "saved username", Toast.LENGTH_SHORT).show();
                 }
                 for (DataSnapshot singleSnapshot: dataSnapshot.getChildren()){
 
@@ -212,6 +320,7 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
 
 
     }
+
 
     /**
      * Setting up the Toolbar as the oficial toolbar for this part of the app and putting the back button at the top left.
