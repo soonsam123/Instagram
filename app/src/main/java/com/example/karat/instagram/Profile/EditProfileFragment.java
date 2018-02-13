@@ -205,7 +205,7 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
 
     @Override
     public void onConfirmPassword(String password) {
-        // WARNING: Never prints the password in the logs in a release app.
+        //============WARNING: Never prints the password in the logs in a release app.============//
         // I am doing this only with the purpose of debugging.
         Log.i(TAG, "onConfirmPassword: Password: " + password);
 
