@@ -52,5 +52,7 @@
     <string name="confirm_your_password">Confirm your password</string>
     <string name="confirm">Confirm</string>
     <string name="confirm_password_dialog">ConfirmPasswordDialog</string>
+    <string name="gallery">GALLERY</string>
+    <string name="photo">PHOTO</string>
 
 </resources>
