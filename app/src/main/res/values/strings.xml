@@ -54,5 +54,6 @@
     <string name="confirm_password_dialog">ConfirmPasswordDialog</string>
     <string name="gallery">GALLERY</string>
     <string name="photo">PHOTO</string>
+    <string name="open_camera">OPEN CAMERA</string>
 
 </resources>

@@ -37,11 +37,12 @@ public class ShareActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_share);
         Log.d(TAG, "onCreate: Starting Share Activity");
 
         if (checkPermissionsArray(Permissions.PERMISSIONS)){
             // Do our stuff because permission is already granted
+            setUpViewPager();
         } else {
             verifyPermissions(Permissions.PERMISSIONS);
         }
@@ -50,6 +51,9 @@ public class ShareActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * Setup the View Pager to Gallery and Photo Fragments.
+     */
     private void setUpViewPager(){
 
         mViewPager = findViewById(R.id.viewPagerContainer);
@@ -57,17 +61,29 @@ public class ShareActivity extends AppCompatActivity {
 
         SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
 
-        /*adapter.addFragment(new GalleryFragment());
+        adapter.addFragment(new GalleryFragment());
         adapter.addFragment(new PhotoFragment());
 
         mViewPager.setAdapter(adapter);
         bottomTabLayout.setupWithViewPager(mViewPager);
 
         bottomTabLayout.getTabAt(0).setText(R.string.gallery);
-        bottomTabLayout.getTabAt(1).setText(R.string.photo);*/
+        bottomTabLayout.getTabAt(1).setText(R.string.photo);
 
     }
 
+    /**
+     * Returns the current item the view pager is
+     * 0 = GalleryFragment
+     * 1 = PhotoFragment
+     * @return
+     */
+    public int getCurrentTabNumber(){return mViewPager.getCurrentItem();}
+
+    /**
+     * Ask for permissions if not granted.
+     * @param permissions
+     */
     public void verifyPermissions(String[] permissions){
         Log.i(TAG, "verifyPermissions: Verifying the permissions");
 
@@ -81,6 +97,11 @@ public class ShareActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * Check permissions for an entire array.
+     * @param permissions
+     * @return
+     */
     public boolean checkPermissionsArray(String[] permissions){
         Log.i(TAG, "checkPermissionsArray: Checking an array of permissions");
 
@@ -94,6 +115,11 @@ public class ShareActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Check for a single permission,
+     * @param permission
+     * @return
+     */
     public boolean checkPermissions(String permission){
         Log.i(TAG, "checkPermissions: Checking for a single permission: " + permission);
 
