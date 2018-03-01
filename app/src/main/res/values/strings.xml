@@ -1,40 +1,49 @@
 <resources>
-    <string name="app_name">Instagram</string>
+
+    <!-- Setences -->
+    <string name="noaccount_createone">No account yet? Create one</string>
+    <string name="register_new_account">REGISTER A NEW ACCOUNT</string>
+    <string name="fillin_all_fields">You must fill in all the fields</string>
+    <string name="are_you_sure_want_signout">Are you sure you want to sign out?</string>
+    <string name="no_name">No Name</string>
+    <string name="confirm_your_password">Confirm your password</string>
+    <string name="write_description">Write a description&#8230;</string>
+
+    <!-- Account -->
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="full_name">Full Name</string>
+    <string name="register">Register</string>
     <string name="account_settings">Account Settings</string>
-    <string name="edit_profile">Edit Profile</string>
-    <string name="sign_out">Sign Out</string>
-    <string name="change_photo">Change Photo</string>
     <string name="profile_picture">Profile Picture</string>
     <string name="private_information">PRIVATE INFORMATION</string>
     <string name="leafsoon_email">contato@leafsoon.com</string>
     <string name="_62_9_9260_2380">62 9 9260 2380</string>
+
+    <!-- Commands -->
+    <string name="edit_profile">Edit Profile</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="change_photo">Change Photo</string>
+    <string name="cancel">Cancel</string>
+    <string name="confirm">Confirm</string>
+    <string name="open_camera">OPEN CAMERA</string>
+    <string name="next">Next</string>
+
+
+    <!-- Instagram -->
+    <string name="app_name">Instagram</string>
     <string name="instagram_logo">Instagram Logo</string>
-    <string name="email">Email</string>
-    <string name="password">Password</string>
-    <string name="login">Login</string>
-    <string name="noaccount_createone">No account yet? Create one</string>
-    <string name="register_new_account">REGISTER A NEW ACCOUNT</string>
-    <string name="full_name">Full Name</string>
-    <string name="register">Register</string>
-    <string name="fillin_all_fields">You must fill in all the fields</string>
 
     <!-- Database -->
     <string name="dbname_users">users</string>
     <string name="dbname_user_account_settings">user_account_settings</string>
 
-    <string name="are_you_sure_want_signout">Are you sure you want to sign out?</string>
-    <string name="cancel">CANCEL</string>
-
     <!-- Fragments -->
     <string name="fragment_profile">Profile</string>
 
-
-    <string name="no_name">No Name</string>
-
-    <!-- Calling Activity -->
-    <string name="calling_activity">calling_activity</string>
-
     <!-- Activities -->
+    <string name="calling_activity">calling_activity</string>
     <string name="profile_activity">Profile Activity</string>
 
     <!-- Field names -->
@@ -49,11 +58,12 @@
     <string name="field_email">email</string>
     <string name="field_phone_number">phone_number</string>
     <string name="field_user_id">user_id</string>
-    <string name="confirm_your_password">Confirm your password</string>
-    <string name="confirm">Confirm</string>
+
+    <!-- Others -->
     <string name="confirm_password_dialog">ConfirmPasswordDialog</string>
     <string name="gallery">GALLERY</string>
     <string name="photo">PHOTO</string>
-    <string name="open_camera">OPEN CAMERA</string>
+    <string name="selected_image">selected_image</string>
+    <string name="share">Share</string>
 
 </resources>
